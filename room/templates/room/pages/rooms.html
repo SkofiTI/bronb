@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ block.super }} - Помещения  
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h2>Все доступные помещения:</h2>
+  <div class="row">
+    <div class="col-4 mt-4">
+      {% for room in rooms %}
+        {% include 'room/components/room_card.html' %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
