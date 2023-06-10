@@ -11,12 +11,7 @@ def rooms_list(request):
 
 def room_detail(request, slug):
     room = get_object_or_404(Room, slug__iexact=slug)
-    months = room.months.all()
-    context = {
-        'room': room,
-        'months': months,
-    }
-    return render(request, 'room/pages/room_detail.html', context=context)
+    return render(request, 'room/pages/room_detail.html', context={'room': room})
 
 
 def profile(request):

@@ -1,69 +1,70 @@
-{% extends 'base.html' %}
+  {% extends 'base.html' %}
 
-{% block title %}
-  {{ block.super }} - {{ room.title }}
-{% endblock %}
+  {% block title %}
+    {{ block.super }} - {{ room.title }}
+  {% endblock %}
 
-{% block content %}
+  {% block content %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h2>Общая информация:</h2>
-      <h4 class="mt-4 mb-4">{{ room.title }}</h4>
-      <h5>Адрес: {{ room.address }}</h5>
-      <h5>Время: {{ room.time }}</h5>
-      <h5>Свободное количество мест: {{ room.seats }}</h5>
-      <h2 class="mt-4">Доступные дни для бронирования:</h2>
-      {% for month in months %}
-      <div class="rooms card mt-4">
-          <div class="card-body">
-            <h4>{{ month.name }}</h4>
-            {% for day in month.days.all %}
-              <div class="accordion mt-4" id="accordion-{{ day.id }}">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-heading-{{ day.id }}">
-                    <button
-                      class="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#panelsStayOpen-collapse-{{ day.id }}"
-                      aria-expanded="false"
-                      aria-controls="panelsStayOpen-collapse-{{ day.id }}"
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Общая информация:</h2>
+        <h4 class="mt-4 mb-4">{{ room.title }}</h4>
+        <h5>Адрес: {{ room.address }}</h5>
+        <h5>Время: {{ room.time }}</h5>
+        <h5>Свободное количество мест: {{ room.seats }}</h5>
+        <h2 class="mt-4">Доступные дни для бронирования:</h2>
+        {% for month in room.months.all %}
+        <div class="rooms card mt-4">
+            <div class="card-body">
+              <h4>{{ month.name }}</h4>
+              {% for day in month.days.all %}
+                <div class="accordion mt-4" id="accordion-{{ day.id }}">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-heading-{{ day.id }}">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapse-{{ day.id }}"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapse-{{ day.id }}"
+                      >
+                        {{ day.date|date:"d.m.Y" }} - {{ day.name }}
+                      </button>
+                    </h2>
+                    <div
+                      id="panelsStayOpen-collapse-{{ day.id }}"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="panelsStayOpen-heading-{{ day.id }}"
                     >
-                      {{ day.date|date:"d.m.Y" }} - {{ day.name }}
-                    </button>
-                  </h2>
-                  <div
-                    id="panelsStayOpen-collapse-{{ day.id }}"
-                    class="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-heading-{{ day.id }}"
-                  >
-                    <div class="accordion-body">
-                      <ul class="list-group">
-                        {% for booking_date in day.booking_dates.all %}
-                          <li class="list-group-item">
-                            {% include 'room/components/room_modal.html' with room=room day=day booking_date=booking_date %}
-                            <a
-                              href="#"
-                              class="link"
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                              >{{ booking_date.start_time|time:"H:i" }} - {{ booking_date.end_time|time:"H:i" }}</a
-                            >
-                          </li>
-                        {% endfor %}
-                      </ul>
+                      <div class="accordion-body">
+                        <ul class="list-group">
+                          {% for booking_date in day.booking_dates.all %}
+                            <li class="list-group-item">
+                              <a
+                                href="#"
+                                class="link"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                >{{ booking_date.start_time|time:"H:i" }} - {{ booking_date.end_time|time:"H:i" }}</a
+                              >
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            {% endfor %}
-          </div>
+              {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
   </div>
-</div>
 
-{% endblock %}
+  {% include 'room/components/room_modal.html' %}
+
+  {% endblock %}
