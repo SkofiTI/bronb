@@ -12,3 +12,7 @@ body {
 [data-time-link] {
   text-decoration: none;
 }
+
+.back-btn {
+  text-decoration: none;
+}

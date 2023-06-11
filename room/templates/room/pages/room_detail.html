@@ -10,7 +10,10 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2>Общая информация:</h2>
+      <h5><a href="{% url 'rooms_list_url' %}" class="back-btn"
+        >Назад</a
+      ></h5>
+      <h2 class="mt-4">Общая информация:</h2>
       <h4 class="mt-4 mb-4">{{ room.title }}</h4>
       <h5>Адрес: {{ room.address }}</h5>
       <h5>Время: {{ room.time }}</h5>
