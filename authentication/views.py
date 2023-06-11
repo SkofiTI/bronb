@@ -16,7 +16,7 @@ def register_view(request):
                 return redirect('login')
         else:
             form = UserCreationForm()
-    return render(request, 'authentication/register.html', {'form': form})
+    return render(request, 'authentication/pages/register.html', {'form': form})
 
 
 def login_view(request):
@@ -36,7 +36,7 @@ def login_view(request):
                     form.add_error(None, 'Invalid phone number or password')
         else:
             form = UserLoginForm()
-    return render(request, 'authentication/login.html', {'form': form})
+    return render(request, 'authentication/pages/login.html', {'form': form})
 
 
 @login_required(login_url="login")

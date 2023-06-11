@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <title>{% block title %} BRONb {% endblock %}</title>
   </head>
-  <body>
-    {% include 'components/navbar.html' %}
-    
+  <body>    
     {% block content %}
       Нет контента на этой странице!
     {% endblock %}
