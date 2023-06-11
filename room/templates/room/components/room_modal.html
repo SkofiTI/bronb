@@ -1,15 +1,15 @@
 <div
   class="modal fade"
-  id="exampleModal"
+  id="modal{{booking_date.id}}"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel"
+  aria-labelledby="modalLabel{{booking_date.id}}"
   aria-hidden="true"
 >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          Хотите забронировать помещение {{ room.title }} на дату {{ day.date|date:"d.m.Y" }} и
+        <h5 class="modal-title" id="modalLabel{{booking_date.id}}">
+          Хотите забронировать помещение "{{ room.title }}" на дату {{ day.date|date:"d.m.Y" }} и
           время {{ booking_date.start_time|time:"H:i" }} - {{ booking_date.end_time|time:"H:i" }}?
         </h5>
         <button

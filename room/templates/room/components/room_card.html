@@ -1,14 +1,16 @@
 {% load static %}
 
-<div class="card" style="width: 18rem">
-  <img src="{% static 'img/'|add:room.title|add:'.jpg' %}" class="card-img-top"
-  alt="photo" />
-  <div class="card-body">
-    <h5 class="card-title">{{ room.title }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{ room.address }}</h6>
-    <p class="card-text">Время: {{ room.time }}</p>
-    <a href="{{ room.get_absolute_url }}" class="btn btn-primary"
-      >Перейти</a
-    >
+<div class="col mt-4">
+  <div class="card" style="width: 22rem">
+    <img src="{% static 'img/'|add:room.title|add:'.jpg' %}" class="card-img-top"
+    alt="photo" />
+    <div class="card-body">
+      <h5 class="card-title">{{ room.title }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ room.address }}</h6>
+      <p class="card-text">Время: {{ room.time }}</p>
+      <a href="{{ room.get_absolute_url }}" class="btn btn-primary"
+        >Перейти</a
+      >
+    </div>
   </div>
 </div>

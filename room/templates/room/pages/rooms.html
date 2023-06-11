@@ -10,9 +10,7 @@
   <h2>Все доступные помещения:</h2>
   <div class="row">
       {% for room in rooms %}
-        <div class="col-4 mt-4">
-          {% include 'room/components/room_card.html' %}
-        </div>
+        {% include 'room/components/room_card.html' %}
       {% endfor %}
   </div>
 </div>

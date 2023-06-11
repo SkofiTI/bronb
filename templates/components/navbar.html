@@ -1,31 +1,53 @@
 {% load static %}
 
-<div class="container">
+<div class="global-navbar">
   <header
-    class="d-flex flex-wrap justify-content-center align-items-center py-3 mb-4 border-bottom"
+    class="navbar navbar-expand-sm navbar-light bg-light d-flex align-items-center border-bottom py-2 mb-4"
+    role="navigation"
   >
-    <a
-      href="{% url 'rooms_list_url' %}"
-      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
-    >
-      <img
-        src="{% static 'img/SevSU-Logo.png' %}"
-        width="90"
-        height="60"
-        class="d-inline-block align-top"
-        alt="SevSU"
-        loading="lazy"
-      />
-      <span class="fs-4">BRONb</span>
-    </a>
+    <div class="container">
 
-    <ul class="nav nav-pills">
-      <li class="nav-item">
-        <a href="{% url 'rooms_list_url' %}" class="nav-link active">Помещения</a>
-      </li>
-      <li class="nav-item">
-        <a href="{% url 'profile_url' %}" class="nav-link">Личный кабинет</a>
-      </li>
-    </ul>
+      <a
+        href="{% url 'rooms_list_url' %}"
+        class="navbar-brand d-flex align-items-center me-auto text-dark text-decoration-none"
+      >
+        <img
+          src="{% static 'img/SevSU-Logo.png' %}"
+          width="90"
+          height="60"
+          alt="SevSU"
+          loading="lazy"
+        />
+        BRONb
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a href="{% url 'rooms_list_url' %}" class="nav-link active"
+              >Помещения</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'profile_url' %}" class="nav-link"
+              >Личный кабинет</a
+            >
+          </li>
+        </ul>
+      </div>
+
+    </div>
   </header>
 </div>
