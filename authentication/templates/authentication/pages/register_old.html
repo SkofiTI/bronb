@@ -1,0 +1,40 @@
+{% extends 'authentication/base_auth.html' %}
+
+{% block title %}
+  {{ block.super }} - Регистрация
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div
+    class="row justify-content-center align-items-center"
+    style="min-height: 100vh"
+  >
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Регистрация</h2>
+      <form method="post">
+        {% for field in form %}
+          <div class="form-group mt-2">
+            {% csrf_token %}
+
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.name == 'password' %}
+              {{ form.password.errors }}
+            {% elif field.name == 'password_confirmation' %}
+              {{ form.password_confirmation.errors }}
+            {% elif field.name == 'phone_number' %}
+              {{ form.phone_number.errors }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </form>
+      <div class="form-group mt-3 d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary btn-block">
+          Зарегистрироваться
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,7 +1,23 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}
-  {{ block.super }}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <link
+      rel=icon
+      type=image/png
+      sizes=32x32
+      href=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC4klEQVR4AbVXA6wdTRSe339t20acRg1q62lma9uaMy/ZMqxtu0HdO2dq221c2zbuqe/L3ftmt7df8oW7RzPnO2eYLbq4GzI6EhM54BQBeCzMSwLMgy/EWwL0oTAXCqmdhKGYjcULbYZiUSHNVAH4KMyPlnzJFS5qrbACC4p27o7/hcLRAvAFGQ3It1yaiQn992dgftBahioLwAtkJE48zWFbMT/O79GPceYVsh3buQqVEBKvC8AnARxYBRE+2vzeZw545uuHTxxlujoS2wjADWG+jlcQDuDx1oNCmVhaCMBRaT5+J8AMYezjH63dUF6uTEcHzHqbS2nBUZHO3R2FqXWiR6znJiSs/ot9BUXPFbYQgMu9/rHgM0duLcC+gfo81g8ccG393pv/Y2nAh23MIZTuScLk+ygkTmcE6lHLS7ehS5ej/zAPOKlbqwmJkwXgfdsqJLg7MjNHmWbWkStc5rrun+kJGAfTh7rJogqJdPlm+CkdBzPGWkkBh4X51NOe1DOZA7jH5/l9SIFQY2aJZAgVEaD3edg6QBW4HeAWX4vSywQLjYngbUYlCiYoWjJ7kJ/F0aYmC6xyCi9/1gcLpAzXNTngqyh2nlMAN4IqGpe6evrOTQ1aWrySYF4XhGjVRjEgFHamzGNUcT8jRQqs6cq0ipq1NPkcMKstbEygCjQPXIFhW0uzn0AiJSR2IDW0TkC4m7OSLAa4hLsjpFia2gLMSR82HtIYiBxG9nwphpuKX8tdVQBu9Z2AxMnsG6iUPtrxLQfdmrYnDjhfAL4PcHwvaAWIHK1Kj7TJ3JE4mPZ/CiT45cXRXnJ5OnbZ9FXalAI7Jko8TL68B0fkGI03b5IPFgsiFav8piBupAwPlWc2oEeEAH02fs7NyTbDTVnmB9SjjkI36OJJ/CzDSo9NcFf/+4uPU5xMk8uH80f0im4D2wqxeIE2YA46wQGcJRTupY746Xl+jYPWjsTxQm6r7yfjTwvoP7LB/cQvAAAAAElFTkSuQmCC
+    />
+    
+    <link rel="stylesheet" href="{% static 'css/sevsu.css' %}" />
 
+    <title>{% block title %} BRONb {% endblock %}</title>
+  </head>
+  <body>
+    {% block content %} Нет контента на этой странице! {% endblock %}
+  </body>
+</html>
