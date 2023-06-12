@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import HttpResponseNotFound
+from django.contrib.auth.decorators import login_required
 
 from .models import Room, Day, BookingDate, Booking
 
@@ -47,8 +48,9 @@ def cancel_booking(request, booking_id):
     return redirect('profile_url')
 
 
-@user_passes_test(lambda u: u.is_superuser)
 def change_booking_status(request, booking_id):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        return HttpResponseNotFound()
     booking = get_object_or_404(Booking, id=booking_id)
     new_status = request.POST.get('status')
     booking.change_status(new_status)
@@ -56,8 +58,9 @@ def change_booking_status(request, booking_id):
     return redirect('admin_panel_url')
 
 
-@user_passes_test(lambda u: u.is_superuser)
 def admin_panel(request):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        return HttpResponseNotFound()
     bookings = Booking.objects.all()
 
     return render(request, 'room/pages/admin_panel.html', context={'bookings': bookings})
