@@ -46,11 +46,14 @@
         <tbody>
           {% for booking in bookings %}
           <tr>
-            <td>{{ booking.title }}</td>
-            <td>{{ booking.date_bronb }}</td>
+            <td>{{ booking.room.title }}</td>
+            <td>{{ booking.booking_date.day.date|date:"d.m.Y" }}
+                {{ booking.booking_date.start_time }} - {{ booking.booking_date.end_time }}</td>
             <td>{{ booking.status }}</td>
-            <td><a href="#" class="btn btn-danger btn-sm">Отозвать</a></td>
-          </tr>
+            {% if booking.status == 'Рассматривается' %}
+              <td><a href="{% url 'cancel_booking_url' booking_id=booking.id %}" class="btn btn-danger btn-sm">Отозвать</a></td>
+            {% endif %}
+            </tr>
           {% empty %}
           <tr>
             <td colspan="4">

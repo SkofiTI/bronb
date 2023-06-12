@@ -10,7 +10,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="modalLabel{{booking_date.id}}">
           Хотите забронировать помещение "{{ room.title }}" на дату {{ day.date|date:"d.m.Y" }} и
-          время {{ booking_date.start_time|time:"H:i" }} - {{ booking_date.end_time|time:"H:i" }}?
+          время {{ booking_date.start_time }} - {{ booking_date.end_time }}?
         </h5>
         <button
           type="button"
@@ -26,7 +26,7 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Отмена
         </button>
-        <button type="button" class="btn btn-primary">Забронировать</button>
+        <a href="{% url 'bronb_list_url' room_title=room.title date=day.date start_time=booking_date.start_time end_time=booking_date.end_time slug=room.slug %}" class="btn btn-primary">Забронировать</a>
       </div>
     </div>
   </div>

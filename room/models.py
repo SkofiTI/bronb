@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import reverse
 
+from authentication.models import User
+
 
 class Room(models.Model):
     title = models.CharField(max_length=50)
@@ -29,5 +31,35 @@ class Day(models.Model):
 
 class BookingDate(models.Model):
     day = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='booking_dates')
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    start_time = models.CharField(max_length=10)
+    end_time = models.CharField(max_length=10)
+    is_available = models.BooleanField(default=True)
+
+
+class Booking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    booking_date = models.ForeignKey(BookingDate, on_delete=models.CASCADE)
+
+    status_choices = [
+        ('Рассматривается', 'Рассматривается'),
+        ('Одобрено', 'Одобрено'),
+        ('Отклонено', 'Отклонено'),
+    ]
+
+    status = models.CharField(max_length=20, choices=status_choices, default='Рассматривается')
+
+    def cancel_booking(self):
+        self.booking_date.is_available = True
+        self.booking_date.save()
+        self.delete()
+
+
+    def change_status(self, new_status):
+        self.status = new_status
+
+        if new_status == 'Отклонено':
+            self.booking_date.is_available = True
+            self.booking_date.save()
+
+        self.save()
