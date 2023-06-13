@@ -60,6 +60,12 @@ def change_booking_status(request, booking_id):
     new_status = request.POST.get('status')
     booking.change_status(new_status)
 
+    if new_status == 'Одобрено':
+        Booking.objects.filter(
+            room=booking.room,
+            booking_date=booking.booking_date,
+        ).exclude(id=booking.id).update(status='Отклонено')
+
     return redirect('admin_panel_url')
 
 

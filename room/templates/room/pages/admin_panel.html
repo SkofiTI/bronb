@@ -27,7 +27,7 @@
         </thead>
         <tbody>
           {% for booking in bookings %}
-            {% if booking.status != 'Одобрено' %}
+            {% if booking.status == 'Рассматривается' %}
               <tr>
                 <td>{{ booking.user.first_name }} {{ booking.user.last_name }} {{ booking.user.middle_name }}</td>
                 <td>{{ booking.user.phone_number }}</td>
