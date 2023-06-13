@@ -7,6 +7,10 @@ from django.template.loader import render_to_string
 from .models import Room, Day, BookingDate, Booking
 
 
+def error_404(request, exception):
+    return render(request, 'room/pages/404.html')
+
+
 def rooms_list(request):
     rooms = Room.objects.all()
 

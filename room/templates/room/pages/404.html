@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ block.super }} - ОШИБКА!
+{% endblock %}
+
+{% block content %}
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="row text-center">
+      <div class="col">
+        <h1>Указанная вами страница не существует!</h1>
+        <a class="btn btn-primary mt-2" href="{% url 'rooms_list_url' %}">Назад на главную</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

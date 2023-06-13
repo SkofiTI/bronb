@@ -11,3 +11,6 @@ urlpatterns = [
     path('rooms/', include('room.urls')),
     path('auth/', include('authentication.urls'))
 ]
+
+
+handler404 = 'room.views.error_404'
