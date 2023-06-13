@@ -8,7 +8,15 @@ from .models import Room, Day, BookingDate, Booking
 
 def rooms_list(request):
     rooms = Room.objects.all()
-    return render(request, 'room/pages/rooms.html', context={'rooms': rooms})
+
+    return render(
+        request,
+        'room/pages/rooms.html',
+        context={
+            'rooms': rooms,
+            'active_page': 'rooms_list',
+        }
+    )
 
 
 def room_detail(request, slug):
@@ -23,7 +31,7 @@ def profile(request):
         return redirect('admin_panel_url')
     else:
         bookings = Booking.objects.filter(user=request.user)
-        return render(request, 'room/pages/profile.html', context={'bookings': bookings})
+        return render(request, 'room/pages/profile.html', context={'bookings': bookings, 'active_page': 'profile'})
 
 
 @login_required

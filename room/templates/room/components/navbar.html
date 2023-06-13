@@ -6,7 +6,6 @@
     role="navigation"
   >
     <div class="container">
-
       <a
         href="{% url 'rooms_list_url' %}"
         class="navbar-brand d-flex align-items-center me-auto text-dark text-decoration-none"
@@ -36,18 +35,36 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
+            {% if active_page == 'rooms_list' %}
             <a href="{% url 'rooms_list_url' %}" class="nav-link active"
               >Помещения</a
             >
+            {% else %}
+            <a href="{% url 'rooms_list_url' %}" class="nav-link"
+              >Помещения</a
+            >
+            {% endif %}
           </li>
           <li class="nav-item">
+            {% if active_page == 'profile' %}
+            <a href="{% url 'profile_url' %}" class="nav-link active"
+              >Личный кабинет</a
+            >
+            {% else %}
             <a href="{% url 'profile_url' %}" class="nav-link"
               >Личный кабинет</a
             >
+            {% endif %}
           </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link">
+              Выйти</a
+            >
+          </li>
+          {% endif %}
         </ul>
       </div>
-
     </div>
   </header>
 </div>
