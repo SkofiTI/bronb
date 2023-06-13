@@ -71,4 +71,4 @@ def admin_panel(request):
         return HttpResponseNotFound()
     bookings = Booking.objects.all()
 
-    return render(request, 'room/pages/admin_panel.html', context={'bookings': bookings})
+    return render(request, 'room/pages/admin_panel.html', context={'bookings': bookings, 'active_page': 'profile'})

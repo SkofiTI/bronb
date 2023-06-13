@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col">
       <h2>Мои заявки на бронирование помещений:</h2>
-      <table class="table table-striped mt-4">
+      <table class="table mt-4">
         <thead>
           <tr>
             <th scope="col">Название помещения</th>
@@ -29,6 +29,15 @@
             <td>{{ booking.status }}</td>
             {% if booking.status == 'Рассматривается' %}
               <td><a href="{% url 'cancel_booking_url' booking_id=booking.id %}" class="btn btn-danger btn-sm">Отозвать</a></td>
+            {% else %}
+              <td>
+                <a
+                  href="#"
+                  type="button"
+                  class="btn-close"
+                  aria-label="Close"
+                ></a>
+              </td>
             {% endif %}
             </tr>
           {% empty %}
