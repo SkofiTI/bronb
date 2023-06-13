@@ -46,18 +46,20 @@
             </div>
           </div>
           <form id="login-form" action="#" method="post">
+            <form id="login-form" action="#" method="post">
+            {% if form.non_field_errors %}
+              <span class="error">{{ form.non_field_errors }}</span>
+            {% endif %}
             {% for field in form %}
-            <div class="form-group">
-              {% csrf_token %}
-
-              {{ field.label_tag }}
-              {{ field }}
-              {% if field.name == 'password' %}
-                {{ form.password.errors }}
-              {% elif field.name == 'phone_number' %}
-                {{form.phone_number.errors }}
-              {% endif %}
-            </div>
+              <div class="form-group">
+                {% csrf_token %}
+                
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                  {{ field.errors }}
+                {% endif %}
+              </div>
             {% endfor %}
 
             <div class="form-group form-options">

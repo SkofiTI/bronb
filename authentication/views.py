@@ -33,7 +33,7 @@ def login_view(request):
                     login(request, user)
                     return redirect('profile_url', permanent=True)
                 else:
-                    form.add_error(None, 'Invalid phone number or password')
+                    form.add_error(None, 'Неправильно указан логин и/или пароль')
         else:
             form = UserLoginForm()
     return render(request, 'authentication/pages/login.html', {'form': form})

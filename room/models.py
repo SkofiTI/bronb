@@ -50,16 +50,14 @@ class Booking(models.Model):
     status = models.CharField(max_length=20, choices=status_choices, default='Рассматривается')
 
     def cancel_booking(self):
-        self.booking_date.is_available = True
-        self.booking_date.save()
-        self.delete()
-
+        if self.status != 'Одобрено':
+            self.delete()
 
     def change_status(self, new_status):
         self.status = new_status
 
-        if new_status == 'Отклонено':
-            self.booking_date.is_available = True
+        if new_status == 'Одобрено':
+            self.booking_date.is_available = False
             self.booking_date.save()
 
         self.save()

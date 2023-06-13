@@ -40,9 +40,6 @@ def bronb_list(request, slug, date, start_time, end_time, room_title):
     day = get_object_or_404(Day, date=date, month__room=room)
     booking_date = get_object_or_404(BookingDate, start_time=start_time, end_time=end_time, day_id=day.id)
 
-    booking_date.is_available = False
-    booking_date.save()
-
     Booking.objects.create(user=request.user, room=room, booking_date=booking_date)
 
     return redirect('rooms_list_url')

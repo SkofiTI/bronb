@@ -20,8 +20,8 @@ class UserCreationForm(forms.ModelForm):
             'password': 'Пароль:',
         }
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'middle_name': forms.TextInput(attrs={'class': 'form-control'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control', 'input_type': 'tel'}),
             'password': forms.PasswordInput(attrs={'class': 'form-control', 'input_type': 'password'}),
