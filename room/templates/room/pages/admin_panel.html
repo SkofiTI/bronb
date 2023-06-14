@@ -26,39 +26,31 @@
           </tr>
         </thead>
         <tbody>
-          {% if bookigs.exists %}
-            {% for booking in bookings %}
-              {% if booking.status == 'Рассматривается' %}
-                <tr>
-                  <td>{{ booking.user.first_name }} {{ booking.user.last_name }} {{ booking.user.middle_name }}</td>
-                  <td>{{ booking.user.phone_number }}</td>
-                  <td>{{ booking.room.title }}</td>
-                  <td>{{ booking.booking_date.day.date|date:"d.m.Y" }}</td>
-                  <td>{{ booking.booking_date.start_time }} - {{ booking.booking_date.end_time }}</td>
-                  <td>{{ booking.status }}</td>
-                  <form method="POST" action="{% url 'change_booking_status_url' booking_id=booking.id %}">
-                  {% csrf_token %}
-                    <td>
-                      <select  class="form-select" name="status">
-                        <option value="Рассматривается">Рассматривается</option>
-                        <option value="Одобрено">Одобрено</option>
-                        <option value="Отклонено">Отклонено</option>
-                      </select>
-                    </td>
-                    <td>
-                      <button class="btn btn-primary btn-sm" type="submit">Изменить статус</button>
-                    </td>
-                  </form>
-                </tr>
-              {% endif %}
-            {% endfor %}
-          {% else %}
-          <tr>
-            <td colspan="8">
-              Нет заявок на бронирование.
-            </td>
-          </tr>
-          {% endif %}
+          {% for booking in bookings %}
+            {% if booking.status == 'Рассматривается' %}
+              <tr>
+                <td>{{ booking.user.first_name }} {{ booking.user.last_name }} {{ booking.user.middle_name }}</td>
+                <td>{{ booking.user.phone_number }}</td>
+                <td>{{ booking.room.title }}</td>
+                <td>{{ booking.booking_date.day.date|date:"d.m.Y" }}</td>
+                <td>{{ booking.booking_date.start_time }} - {{ booking.booking_date.end_time }}</td>
+                <td>{{ booking.status }}</td>
+                <form method="POST" action="{% url 'change_booking_status_url' booking_id=booking.id %}">
+                {% csrf_token %}
+                  <td>
+                    <select  class="form-select" name="status">
+                      <option value="Рассматривается">Рассматривается</option>
+                      <option value="Одобрено">Одобрено</option>
+                      <option value="Отклонено">Отклонено</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button class="btn btn-primary btn-sm" type="submit">Изменить статус</button>
+                  </td>
+                </form>
+              </tr>
+            {% endif %}
+          {% endfor %}
         </tbody>
       </table>
     </div>
